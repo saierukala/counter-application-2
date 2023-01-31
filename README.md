@@ -1,70 +1,88 @@
-# Getting Started with Create React App
+### Class Component and State
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Functional Components
+Class Components
 
-## Available Scripts
+# Functional Components
+These are JavaScript functions that take props as a parameter if necessary and return react element (JSX).
 
-In the project directory, you can run:
+# Class Components
+These components are built using an ES6 class.
 
-### `npm start`
+# extends
+The extends keyword is used to inherit methods and properties from the React.Component.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# render()
+The render() method is the only required method in a class component. It returns the JSX element.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Syntax:
 
-### `npm test`
+import { Component } from "react";
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+class MyComponent extends Component {
+  render() {
+    return JSX;
+  }
+} 
 
-### `npm run build`
+# React Events
+Handling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1.React events are named using camelCase, rather than lowercase.
+2.With JSX, you pass a function as the event handler rather than a string.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Eg:
+<button onClick={activateLasers}>Activate Lasers</button>
+------------------------------------------------------------------------
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+class MyComponent extends Component {
+  handleClick = () => {
+    console.log(this)  // MyComponent {...}
+  }
+  render() {
+    return <button onClick={this.handleClick}>Click Me</button>
+  }
+}
+------------------------------------------------------------------------
 
-### `npm run eject`
+# State
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+The state is a JS object in which we store the component's data that changes over time.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+When the state object changes, the component re-renders.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Intialising State:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+class Counter extends Component {
+  state = { count: 0 }
+  render() {
+    const { count } = this.state;
+    return <p className="count">{count}</p>;
+  }
+}
+------------------------------------------------------------------------
 
-## Learn More
+# Updating State
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+We can update the state by using setState(). We can provide function/object as an argument to set the state
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+# syntax:
+this.setState( prevState => ({... }) )
+------------------------------------------------------------------------
 
-### Code Splitting
+onIncrement = () => {
+  this.setState((prevState) =>
+    console.log(`previous state value ${prevState.count}`)
+  )
+}
+------------------------------------------------------------------------
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+#  Functional Components vs Class Components
 
-### Analyzing the Bundle Size
+1.Renders the UI based on props
+2.Renders the UI based on props and state.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+# publish
+# https://saieCounterapp.ccbp.tech
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
